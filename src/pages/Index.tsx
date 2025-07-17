@@ -31,8 +31,6 @@ const Index = () => {
   const [platformFilter, setPlatformFilter] = useState("all");
   const [custodyFilter, setCustodyFilter] = useState("all");
   const [solanaPayFilter, setSolanaPayFilter] = useState("all");
-  // State for mobile nav dropdown
-  const [showMobileNav, setShowMobileNav] = useState(false);
 
   const filteredWallets = useMemo(() => {
     return wallets.filter((wallet) => {
@@ -77,162 +75,116 @@ const Index = () => {
           backgroundRepeat: "no-repeat",
         }}
       >
-        {/* Header with Navbar - Responsive */}
-        {/* Header with Navbar - Responsive */}
+        {/* Header with Navbar */}
         <motion.header
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="sticky top-0 z-50 bg-background/40"
-          style={{ background: "rgba(132, 132, 132, 0)" }}
+          className="sticky top-0 z-50  bg-background/40"
+          style={{
+            background: "rgba(132, 132, 132, 0)", // transparan tanpa blur
+          }}
         >
           <div className="container mx-auto px-4 md:px-8 lg:px-16 flex items-center justify-between h-16">
-            {/* Logo always visible */}
-            <motion.div className="flex items-center gap-3" whileHover={{ scale: 1.02 }}>
+            <motion.div
+              className="flex items-center gap-3"
+              whileHover={{ scale: 1.02 }}
+            >
               <img src={logoLight} alt="Logo" className="h-32 w-32 object-contain" />
             </motion.div>
-            {/* Desktop Navbar */}
-            <nav className="hidden md:flex flex-1 items-center justify-center">
+            {/* Navbar */}
+            <nav className="flex-1 flex items-center justify-center">
               <motion.ul
-                className="flex gap-4 text-[14px] md:text-[15px] font-normal"
-                initial="hidden"
-                animate="visible"
-                variants={{
-                  hidden: { opacity: 0, y: -10 },
-                  visible: {
-                    opacity: 1,
-                    y: 0,
-                    transition: { staggerChildren: 0.08 }
-                  }
-                }}
+              className="flex gap-4 text-[14px] md:text-[15px] font-normal"
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: { opacity: 0, y: -10 },
+                visible: {
+                opacity: 1,
+                y: 0,
+                transition: { staggerChildren: 0.08 }
+                }
+              }}
               >
-                {[{ href: "https://www.venta.xyz/", label: "Home" },
-                  { href: "/", label: "Wallet" },
-                  { href: "#solanapay", label: "Solana Pay" },
-                  { href: "https://docs.venta.xyz", label: "Documentation", external: true }
-                ].map((item) => {
-                  const isSelected =
-                    (!item.external && window.location.pathname === item.href) ||
-                    (item.href.startsWith("#") && window.location.hash === item.href);
-                  return (
-                    <motion.li
-                      key={item.label}
-                      variants={{
-                        hidden: { opacity: 0, y: -10 },
-                        visible: { opacity: 1, y: 0 }
-                      }}
-                      whileHover={{ scale: 1.12, y: -2 }}
-                      whileTap={{ scale: 0.96, y: 0 }}
-                    >
-                      <a
-                        href={item.href}
-                        target={item.external ? "_blank" : undefined}
-                        rel={item.external ? "noopener noreferrer" : undefined}
-                        className={`transition-all flex items-center gap-2 ${isSelected ? "font-semibold" : ""}`}
-                      >
-                        <motion.span
-                          className={`bg-white/10 border border-white text-white px-3 py-1.5 rounded-full backdrop-blur-md text-[13px] md:text-[14px] ${isSelected ? "bg-white/30 border-primary text-primary-foreground shadow-lg" : ""}`}
-                          whileHover={{ scale: 1.08, boxShadow: "0 2px 16px 0 rgba(80, 80, 255, 0.12)" }}
-                          whileTap={{ scale: 0.97, boxShadow: "0 1px 8px 0 rgba(80, 80, 255, 0.08)" }}
-                          transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                        >
-                          {item.label}
-                        </motion.span>
-                      </a>
-                    </motion.li>
-                  );
-                })}
+              {[
+                { href: "https://www.venta.xyz/", label: "Home" },
+                { href: "/", label: "Wallet" },
+                { href: "#solanapay", label: "Solana Pay" },
+                { href: "https://docs.venta.xyz", label: "Documentation", external: true }
+              ].map((item) => {
+                const isSelected =
+                (!item.external && window.location.pathname === item.href) ||
+                (item.href.startsWith("#") && window.location.hash === item.href);
+
+                return (
+                <motion.li
+                  key={item.label}
+                  variants={{
+                  hidden: { opacity: 0, y: -10 },
+                  visible: { opacity: 1, y: 0 }
+                  }}
+                  whileHover={{ scale: 1.12, y: -2 }}
+                  whileTap={{ scale: 0.96, y: 0 }}
+                >
+                  <a
+                  href={item.href}
+                  target={item.external ? "_blank" : undefined}
+                  rel={item.external ? "noopener noreferrer" : undefined}
+                  className={`transition-all flex items-center gap-2 ${
+                    isSelected ? "font-semibold" : ""
+                  }`}
+                  >
+                  <motion.span
+                    className={`bg-white/10 border border-white text-white px-3 py-1.5 rounded-full backdrop-blur-md text-[13px] md:text-[14px] ${
+                    isSelected
+                      ? "bg-white/30 border-primary text-primary-foreground shadow-lg"
+                      : ""
+                    }`}
+                    whileHover={{
+                    scale: 1.08,
+                    boxShadow: "0 2px 16px 0 rgba(80, 80, 255, 0.12)"
+                    }}
+                    whileTap={{
+                    scale: 0.97,
+                    boxShadow: "0 1px 8px 0 rgba(80, 80, 255, 0.08)"
+                    }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  >
+                    {item.label}
+                  </motion.span>
+                  </a>
+                </motion.li>
+                );
+              })}
               </motion.ul>
             </nav>
-            {/* Desktop GitHub link */}
             <motion.div
-              className="hidden md:flex items-center gap-3 justify-end"
+              className="flex items-center gap-3 justify-end"
               whileHover={{ scale: 1.08, rotate: 8 }}
               whileTap={{ scale: 0.96, rotate: -8 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
               <a
-                href="https://github.com/venta-labs/pay-wallet-explorer"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center"
-                title="View on GitHub"
+              href="https://github.com/venta-labs/pay-wallet-explorer"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center"
+              title="View on GitHub"
               >
-                <motion.svg
-                  width="32"
-                  height="32"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-label="GitHub"
-                  whileTap={{ scale: 0.96, rotate: -8 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                >
-                  <path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.5 2.87 8.32 6.84 9.67.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.36-3.37-1.36-.45-1.17-1.1-1.48-1.1-1.48-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.65.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.38-2.03 1-2.75-.1-.26-.44-1.3.09-2.7 0 0 .83-.27 2.73 1.02a9.18 9.18 0 0 1 2.49-.34c.85 0 1.71.12 2.5.34 1.9-1.29 2.73-1.02 2.73-1.02.53 1.4.19 2.44.09 2.7.62.72 1 1.63 1 2.75 0 3.94-2.34 4.81-4.57 5.07.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.8 0 .26.18.58.69.48A10.01 10.01 0 0 0 22 12.26C22 6.58 17.52 2 12 2z" />
-                </motion.svg>
-              </a>
-            </motion.div>
-            {/* Mobile Navbar: Dropdown & Search */}
-            <div className="flex md:hidden items-center gap-2 w-full justify-between">
-              {/* Logo (mobile) */}
-              <img src={logoLight} alt="Logo" className="h-12 w-12 object-contain" />
-              {/* Search input for wallet */}
-              <input
-                type="text"
-                placeholder="Search wallet..."
-                value={searchTerm}
-                onChange={e => setSearchTerm(e.target.value)}
-                className="flex-1 mx-2 px-3 py-1 rounded-lg border border-border bg-background/60 text-foreground text-sm focus:outline-none"
-                style={{ minWidth: 0 }}
-              />
-              {/* Dropdown for navlinks */}
-              <div className="relative">
-                <button
-                  className="p-2 rounded-lg bg-background/70 border border-border text-foreground focus:outline-none"
-                  onClick={() => setShowMobileNav(v => !v)}
-                  aria-label="Open navigation menu"
-                >
-                  <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="18" x2="21" y2="18" /></svg>
-                </button>
-                {showMobileNav && (
-                  <div className="absolute right-0 mt-2 w-40 bg-background border border-border rounded-lg shadow-lg z-50">
-                    <ul className="flex flex-col py-2">
-                      {[{ href: "https://www.venta.xyz/", label: "Home" },
-                        { href: "/", label: "Wallet" },
-                        { href: "#solanapay", label: "Solana Pay" },
-                        { href: "https://docs.venta.xyz", label: "Documentation", external: true }
-                      ].map((item) => (
-                        <li key={item.label}>
-                          <a
-                            href={item.href}
-                            target={item.external ? "_blank" : undefined}
-                            rel={item.external ? "noopener noreferrer" : undefined}
-                            className="block px-4 py-2 text-sm text-foreground hover:bg-primary/10 rounded-lg"
-                          >
-                            {item.label}
-                          </a>
-                        </li>
-                      ))}
-                      <li>
-                        <a
-                          href="https://github.com/venta-labs/pay-wallet-explorer"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="block px-4 py-2 text-sm text-foreground hover:bg-primary/10 rounded-lg"
-                        >
-                          GitHub
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        </motion.header>
+              <motion.svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-label="GitHub"
+                whileTap={{ scale: 0.96, rotate: -8 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              >
                 <path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.5 2.87 8.32 6.84 9.67.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.36-3.37-1.36-.45-1.17-1.1-1.48-1.1-1.48-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.65.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.38-2.03 1-2.75-.1-.26-.44-1.3.09-2.7 0 0 .83-.27 2.73 1.02a9.18 9.18 0 0 1 2.49-.34c.85 0 1.71.12 2.5.34 1.9-1.29 2.73-1.02 2.73-1.02.53 1.4.19 2.44.09 2.7.62.72 1 1.63 1 2.75 0 3.94-2.34 4.81-4.57 5.07.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.8 0 .26.18.58.69.48A10.01 10.01 0 0 0 22 12.26C22 6.58 17.52 2 12 2z"/>
               </motion.svg>
               </a>
@@ -464,9 +416,9 @@ const Index = () => {
         <div className="flex-1 flex flex-col items-center justify-center">
           <p className="text-base font-semibold text-foreground mb-2">© {new Date().getFullYear()} Venta</p>
           <div className="flex flex-wrap justify-center gap-2 mb-4">
-            <Badge variant="outline" label="Last Updated: July 2025" />
-            <Badge variant="outline" label="Community Driven" />
-            <Badge variant="outline" label="MIT License" />
+            <Badge variant="outline">Last Updated: July 2025</Badge>
+            <Badge variant="outline">Community Driven</Badge>
+            <Badge variant="outline">MIT License</Badge>
           </div>
           <div className="flex items-center gap-4">
             {/* Twitter/X link */}
