@@ -31,6 +31,8 @@ const Index = () => {
   const [platformFilter, setPlatformFilter] = useState("all");
   const [custodyFilter, setCustodyFilter] = useState("all");
   const [solanaPayFilter, setSolanaPayFilter] = useState("all");
+  // State for mobile nav dropdown
+  const [showMobileNav, setShowMobileNav] = useState(false);
 
   const filteredWallets = useMemo(() => {
     return wallets.filter((wallet) => {
@@ -75,28 +77,7 @@ const Index = () => {
           backgroundRepeat: "no-repeat",
         }}
       >
-        {/* Header with Navbar */}
-        <motion.header
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="sticky top-0 z-50  bg-background/40"
-          style={{
-            background: "rgba(132, 132, 132, 0)", // transparan tanpa blur
-          }}
-        >
-          <div className="container mx-auto px-4 md:px-8 lg:px-16 flex items-center justify-between h-16">
-            <motion.div
-              className="flex items-center gap-3"
-              whileHover={{ scale: 1.02 }}
-            >
-              <img src={logoLight} alt="Logo" className="h-32 w-32 object-contain" />
-            </motion.div>
-            {/* Navbar */}
-            <nav className="flex-1 flex items-center justify-center">
-              <motion.ul
-              className="flex gap-4 text-[14px] md:text-[15px] font-normal"
-              initial="hidden"
+        {/* Header with Navbar - Responsive */}
         {/* Header with Navbar - Responsive */}
         <motion.header
           initial={{ opacity: 0, y: -50 }}
@@ -252,29 +233,6 @@ const Index = () => {
             </div>
           </div>
         </motion.header>
-  // State for mobile nav dropdown
-  const [showMobileNav, setShowMobileNav] = useState(false);
-            >
-              <a
-              href="https://github.com/venta-labs/pay-wallet-explorer"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center"
-              title="View on GitHub"
-              >
-              <motion.svg
-                width="32"
-                height="32"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-label="GitHub"
-                whileTap={{ scale: 0.96, rotate: -8 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              >
                 <path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.5 2.87 8.32 6.84 9.67.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.36-3.37-1.36-.45-1.17-1.1-1.48-1.1-1.48-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.65.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.38-2.03 1-2.75-.1-.26-.44-1.3.09-2.7 0 0 .83-.27 2.73 1.02a9.18 9.18 0 0 1 2.49-.34c.85 0 1.71.12 2.5.34 1.9-1.29 2.73-1.02 2.73-1.02.53 1.4.19 2.44.09 2.7.62.72 1 1.63 1 2.75 0 3.94-2.34 4.81-4.57 5.07.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.8 0 .26.18.58.69.48A10.01 10.01 0 0 0 22 12.26C22 6.58 17.52 2 12 2z"/>
               </motion.svg>
               </a>
