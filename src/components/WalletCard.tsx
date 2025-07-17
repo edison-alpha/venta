@@ -22,7 +22,7 @@ const platformIcons = {
 export function WalletCard({ wallet, onViewDetails }: WalletCardProps) {
   const [showAllFeatures, setShowAllFeatures] = useState(false);
   const displayedFeatures = showAllFeatures ? wallet.features : wallet.features.slice(0, 3);
-  const remainingCount = wallet.features.length - 3;
+  const remainingCount = wallet.features.length > 3 ? wallet.features.length - 3 : 0;
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -35,23 +35,33 @@ export function WalletCard({ wallet, onViewDetails }: WalletCardProps) {
         <CardHeader className="pb-3">
           <div className="flex items-start justify-between">
             <div className="flex items-center gap-3">
-              <motion.img
-                src={wallet.logo}
-                alt={`${wallet.name} logo`}
-                className="w-12 h-12 rounded-lg object-cover bg-muted"
-                whileHover={{ scale: 1.1 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                onError={(e) => {
-                  e.currentTarget.src = `data:image/svg+xml;base64,${btoa(`
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <rect width="48" height="48" rx="8" fill="hsl(259 94% 51%)"/>
-                      <text x="24" y="30" text-anchor="middle" fill="white" font-family="system-ui" font-size="20" font-weight="600">
-                        ${wallet.name.charAt(0)}
-                      </text>
-                    </svg>
-                  `)}`;
-                }}
-              />
+      <motion.img
+        src={(() => {
+          try {
+            // Use imported logo variable if available
+            // @ts-ignore
+            return require(`@/assets/image/${wallet.logo.replace('Logo','').toLowerCase()}.webp`);
+          } catch {
+            // fallback to imported logo variable
+            // @ts-ignore
+            return (typeof wallet.logo === 'string' && wallet.logo in window ? window[wallet.logo] : wallet.logo);
+          }
+        })()}
+        alt={`${wallet.name} logo`}
+        className="w-12 h-12 rounded-lg object-cover bg-muted"
+        whileHover={{ scale: 1.1 }}
+        transition={{ type: "spring", stiffness: 400, damping: 10 }}
+        onError={(e) => {
+          e.currentTarget.src = `data:image/svg+xml;base64,${btoa(`
+            <svg width='48' height='48' viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg'>
+              <rect width='48' height='48' rx='8' fill='hsl(259 94% 51%)'/>
+              <text x='24' y='30' text-anchor='middle' fill='white' font-family='system-ui' font-size='20' font-weight='600'>
+                ${wallet.name.charAt(0)}
+              </text>
+            </svg>
+          `)}`;
+        }}
+      />
               <div>
                 <h3 className="font-semibold text-lg text-card-foreground">{wallet.name}</h3>
                 <p className="text-sm text-muted-foreground line-clamp-2">
@@ -76,11 +86,11 @@ export function WalletCard({ wallet, onViewDetails }: WalletCardProps) {
           {/* Platforms */}
           <div className="flex flex-wrap gap-2">
             {wallet.platforms.map((platform) => {
-              const Icon = platformIcons[platform];
+              const Icon = platformIcons[platform] || Info;
               return (
                 <Badge key={platform} variant="secondary" className="gap-1.5">
                   <Icon className="h-3 w-3" />
-                  {platform.replace('-', ' ')}
+                  {platform.replace(/-/g, ' ')}
                 </Badge>
               );
             })}
@@ -91,13 +101,13 @@ export function WalletCard({ wallet, onViewDetails }: WalletCardProps) {
             <div className="space-y-1">
               <p className="text-xs text-muted-foreground">Custody</p>
               <Badge className={getCustodyModelColor(wallet.custodyModel)}>
-                {wallet.custodyModel}
+                {wallet.custodyModel.charAt(0).toUpperCase() + wallet.custodyModel.slice(1)}
               </Badge>
             </div>
             <div className="space-y-1">
               <p className="text-xs text-muted-foreground">Solana Pay QR</p>
               <Badge className={getSolanaPayColor(wallet.solanaPayQR)}>
-                {wallet.solanaPayQR}
+                {wallet.solanaPayQR.charAt(0).toUpperCase() + wallet.solanaPayQR.slice(1)}
               </Badge>
             </div>
           </div>
@@ -111,7 +121,7 @@ export function WalletCard({ wallet, onViewDetails }: WalletCardProps) {
                   variant="ghost"
                   size="sm"
                   onClick={() => setShowAllFeatures(!showAllFeatures)}
-                        className="h-auto p-1 text-xs hover:bg-white/30"
+                  className="h-auto p-1 text-xs hover:bg-white/30"
                 >
                   {showAllFeatures ? (
                     <>

@@ -32,24 +32,14 @@ export function WalletFilters({
 }: WalletFiltersProps) {
   const hasActiveFilters = searchTerm || platformFilter !== "all" || custodyFilter !== "all" || solanaPayFilter !== "all";
 
+  // Platform filter options based on wallet data
   const platformFilters = [
-    { label: "All wallets", value: "all" },
-    { label: "Hardware", value: "Hardware" },
-    { label: "Custodial", value: "Custodial" },
-    { label: "Non-Custodial/Self-Custodial", value: "Non-Custodial/Self-Custodial" },
-    { label: "Token Extensions", value: "Token Extensions" },
-    { label: "Blinks and Actions", value: "Blinks and Actions" },
-    { label: "Solana Pay", value: "Solana Pay" },
-    { label: "Buy Crypto", value: "Buy Crypto" },
-    { label: "Sell Crypto", value: "Sell Crypto" },
-    { label: "Hold NFTs", value: "Hold NFTs" },
-    { label: "MPC", value: "MPC" },
-    { label: "Gas Abstraction", value: "Gas Abstraction" },
-    { label: "Social Recovery", value: "Social Recovery" },
-    { label: "Staking", value: "Staking" },
-    { label: "Spending Limits", value: "Spending Limits" },
-    { label: "Open Source", value: "Open Source" },
-    { label: "Private Key Infrastructure", value: "Private Key Infrastructure" }
+    { label: "All Wallets", value: "all" },
+    { label: "Web", value: "web" },
+    { label: "Mobile", value: "mobile" },
+    { label: "Desktop", value: "desktop" },
+    { label: "Browser Extension", value: "browser-extension" },
+    { label: "Hardware", value: "hardware" }
   ];
 
   return (

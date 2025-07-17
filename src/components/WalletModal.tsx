@@ -98,6 +98,7 @@ export function WalletModal({ wallet, isOpen, onClose }: WalletModalProps) {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {wallet.platforms.map((platform) => {
                 const Icon = platformIcons[platform];
+                // Use platform as key for downloadLinks
                 const downloadLink = wallet.downloadLinks[platform as keyof typeof wallet.downloadLinks];
                 return (
                   <motion.div
@@ -118,7 +119,7 @@ export function WalletModal({ wallet, isOpen, onClose }: WalletModalProps) {
                       >
                         <a href={downloadLink} target="_blank" rel="noopener noreferrer">
                           <Download className="h-3 w-3 mr-1" />
-                          Download
+                          {platform === 'browser-extension' ? 'Download Extension' : 'Download'}
                         </a>
                       </Button>
                     )}
