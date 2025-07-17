@@ -166,7 +166,7 @@ const Index = () => {
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
               <a
-              href="https://github.com/venta-labs/pay-wallet-explorer"
+              href="https://github.com/edison-alpha/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center"
