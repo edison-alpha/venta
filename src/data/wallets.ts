@@ -57,7 +57,7 @@ export const wallets: Wallet[] = [
     pushNotifications: true,
     solanaPayQR: 'yes',
     version: '24.20.0', // Latest version as of search
-    testDate: '2024-01-25',
+    testDate: '2025-07-17',
     description: 'Phantom is one of the most popular Solana wallets with multi-chain support. It offers a seamless user experience with support for multiple blockchains in one wallet. Phantom is known for its intuitive interface, robust security features, and excellent Solana ecosystem integration.',
     website: 'https://phantom.app',
     downloadLinks: {
@@ -80,7 +80,7 @@ export const wallets: Wallet[] = [
     pushNotifications: true,
     solanaPayQR: 'yes',
     version: '0.6.0',
-    testDate: '2024-01-25',
+    testDate: '2025-07-17',
     description: 'Backpack is a modern wallet and exchange platform that offers seamless trading, managing, and securing of cryptocurrency assets. Built with a focus on user experience and security, Backpack provides integrated trading features alongside wallet functionality.',
     website: 'https://backpack.app',
     downloadLinks: {
@@ -102,7 +102,7 @@ export const wallets: Wallet[] = [
   pushNotifications: true,
   solanaPayQR: 'yes',
   version: '1.0.0',
-  testDate: '2024-10-01',
+  testDate: '2025-07-17',
   description: 'Jupiter Mobile is the fastest wallet to explore Solana safely. Built by Jupiter Exchange (the #1 DeFi platform in crypto), this wallet offers breakthrough trading experience with the lowest fees and instant swaps for all Solana tokens. Features Magic Scan for scan-to-trade functionality and seamless FIAT to SOL onramp in 50 seconds.',
   website: 'https://jup.ag/mobile',
   downloadLinks: {
@@ -123,7 +123,7 @@ export const wallets: Wallet[] = [
     pushNotifications: true,
     solanaPayQR: 'yes',
     version: '0.19.0',
-    testDate: '2024-01-25',
+    testDate: '2025-07-17',
     description: 'Dynamic offers a suite of tools for effortless login, wallet creation and user management. Designed for users and built for developers, it provides seamless wallet infrastructure.',
     website: 'https://dynamic.xyz',
     downloadLinks: {
@@ -144,7 +144,7 @@ export const wallets: Wallet[] = [
     pushNotifications: true,
     solanaPayQR: 'yes',
     version: '1.90.0',
-    testDate: '2024-07-15',
+    testDate: '2025-07-17',
     description: 'Solflare is a powerful Solana-native wallet with advanced trading features, comprehensive DeFi access, and institutional-grade security. It offers limit orders, trend analysis, and complete portfolio management tools.',
     website: 'https://solflare.com',
     downloadLinks: {
@@ -166,7 +166,7 @@ export const wallets: Wallet[] = [
     pushNotifications: true,
     solanaPayQR: 'partial',
     version: '8.15.0',
-    testDate: '2024-07-15',
+    testDate: '2025-07-17',
     description: 'Bitget Wallet is a Web3 trading wallet offering faster trading and better assets. It provides comprehensive DeFi access with advanced trading features.',
     website: 'https://web3.bitget.com',
     downloadLinks: {
@@ -187,7 +187,7 @@ export const wallets: Wallet[] = [
     pushNotifications: true,
     solanaPayQR: 'yes',
     version: '24.8.1',
-    testDate: '2024-01-20',
+    testDate: '2025-07-17',
     description: 'Exodus is a popular multi-chain wallet with a highly user-friendly interface and attractive design. This wallet supports over 260 cryptocurrencies and provides comprehensive portfolio tracking features, built-in exchange, and staking rewards. Exodus is renowned for its ease of use and is suitable for both beginners and advanced users.',
     website: 'https://www.exodus.com',
     downloadLinks: {
@@ -209,7 +209,7 @@ export const wallets: Wallet[] = [
     pushNotifications: true,
     solanaPayQR: 'yes',
     version: '3.2.1',
-    testDate: '2024-01-18',
+    testDate: '2025-07-17',
     description: 'Gem Wallet is a mobile wallet that focuses on simplicity and enterprise-level security. Developed with cutting-edge technology, Gem offers a smooth experience with biometric authentication, encrypted backup, and secure recovery features. This wallet is perfect for users who prioritize security without sacrificing user experience.',
     website: 'https://gemwallet.com',
     downloadLinks: {
@@ -229,7 +229,7 @@ export const wallets: Wallet[] = [
     pushNotifications: true,
     solanaPayQR: 'partial',
     version: '2.15.3',
-    testDate: '2024-01-16',
+    testDate: '2025-07-17',
     description: 'Guarda is a multi-currency wallet that supports over 10,000 tokens and 50+ blockchains. This wallet offers a comprehensive solution for crypto management with built-in exchange, staking, and fiat gateway features. Guarda also provides white-label solutions for businesses and has a solid security track record.',
     website: 'https://guarda.com',
     downloadLinks: {
@@ -252,7 +252,7 @@ export const wallets: Wallet[] = [
     pushNotifications: true,
     solanaPayQR: 'partial',
     version: '8.15',
-    testDate: '2024-01-14',
+    testDate: '2025-07-17',
     description: 'Trust Wallet is one of the most popular mobile wallets in the world, developed by Binance. This wallet supports over 100 blockchains and 4.5 million assets with a focus on security and ease of use. Trust Wallet offers access to DeFi, NFT marketplaces, and Web3 apps with an intuitive interface.',
     website: 'https://trustwallet.com',
     downloadLinks: {
@@ -273,7 +273,7 @@ export const wallets: Wallet[] = [
     pushNotifications: false,
     solanaPayQR: 'yes',
     version: '2.1.0',
-    testDate: '2024-01-12',
+    testDate: '2025-07-17',
     description: 'TipLink is an innovative and revolutionary wallet with the concept of "wallet as a link". Users can send cryptocurrency to anyone just by sharing a link, even to people who don\'t have a crypto wallet yet. TipLink enables very easy onboarding to the crypto world and is perfect for use cases like tipping, gifts, and mass distribution.',
     website: 'https://tiplink.io',
     downloadLinks: {
@@ -294,7 +294,7 @@ export const wallets: Wallet[] = [
     pushNotifications: true,
     solanaPayQR: 'partial',
     version: '1.6.8',
-    testDate: '2024-01-10',
+    testDate: '2025-07-17',
     description: 'TokenPocket is a comprehensive multi-chain wallet with support for over 100 blockchains. This wallet offers a complete ecosystem with built-in DEX, DeFi tools, NFT marketplace, and gaming hub. TokenPocket also features social trading and advanced portfolio management capabilities.',
     website: 'https://tokenpocket.pro',
     downloadLinks: {
@@ -315,7 +315,7 @@ export const wallets: Wallet[] = [
     pushNotifications: true,
     solanaPayQR: 'no',
     version: '2.8.0',
-    testDate: '2024-01-08',
+    testDate: '2025-07-17',
     description: 'Binance Web3 Wallet is a gateway to the Web3 ecosystem developed by Binance, the world\'s largest crypto exchange. This wallet is integrated with the Binance ecosystem, offering access to trading, DeFi, NFT marketplaces, and various crypto services. Backed by Binance, this wallet provides high liquidity and security.',
     website: 'https://www.binance.com/web3wallet',
     downloadLinks: {
@@ -336,7 +336,7 @@ export const wallets: Wallet[] = [
     pushNotifications: true,
     solanaPayQR: 'yes',
     version: '1.4.2',
-    testDate: '2024-01-06',
+    testDate: '2025-07-17',
     description: 'Crossmint is a wallet that focuses on enterprise solutions and mass adoption with both custodial and non-custodial options. This wallet offers infrastructure for businesses looking to integrate crypto payments and NFT functionality. Crossmint also provides powerful APIs for developers.',
     website: 'https://crossmint.com',
     downloadLinks: {
@@ -357,7 +357,7 @@ export const wallets: Wallet[] = [
     pushNotifications: true,
     solanaPayQR: 'yes',
     version: '1.1.3',
-    testDate: '2024-01-04',
+    testDate: '2025-07-17',
     description: 'Decaf is a minimalist mobile wallet with a focus on privacy and security. This wallet offers a clean and simple experience without sacrificing important features. Decaf is perfect for users who want a reliable and easy-to-use wallet with a small footprint.',
     website: 'https://decaf.so',
     downloadLinks: {
@@ -377,7 +377,7 @@ export const wallets: Wallet[] = [
     pushNotifications: true,
     solanaPayQR: 'partial',
     version: '3.1.5',
-    testDate: '2024-01-02',
+    testDate: '2025-07-17',
     description: 'NOW Wallet is a wallet that focuses on ease of use and instant transactions. This wallet offers an intuitive interface with advanced features like instant swap, portfolio tracking, and market analytics. NOW Wallet is perfect for users who want a smooth trading experience.',
     website: 'https://walletnow.app',
     downloadLinks: {
@@ -398,7 +398,7 @@ export const wallets: Wallet[] = [
     pushNotifications: true,
     solanaPayQR: 'no',
     version: '2.73.1',
-    testDate: '2024-01-01',
+    testDate: '2025-07-17',
     description: 'Ledger Live is a software wallet developed by Ledger, the leading hardware wallet manufacturer. This wallet offers enterprise-level security with seamless hardware wallet integration. Ledger Live supports over 5,500 crypto assets and provides comprehensive portfolio management features.',
     website: 'https://www.ledger.com/ledger-live',
     downloadLinks: {
@@ -419,7 +419,7 @@ export const wallets: Wallet[] = [
     pushNotifications: false,
     solanaPayQR: 'partial',
     version: '1.8.0',
-    testDate: '2023-12-30',
+    testDate: '2025-07-17',
     description: 'Keystone is a hardware wallet that offers air-gapped security for crypto assets. This wallet uses QR codes for communication with software wallets, providing high security without internet connection. Keystone is perfect for users who prioritize security and cold storage.',
     website: 'https://keyst.one',
     downloadLinks: {
@@ -440,7 +440,7 @@ export const wallets: Wallet[] = [
     pushNotifications: true,
     solanaPayQR: 'yes',
     version: '1.2.8',
-    testDate: '2023-12-28',
+    testDate: '2025-07-17',
     description: 'Privy is a wallet that focuses on developer experience and easy integration. This wallet offers a powerful SDK for developers who want to integrate crypto functionality into their applications. Privy also provides seamless authentication and wallet management.',
     website: 'https://privy.io',
     downloadLinks: {
@@ -461,7 +461,7 @@ export const wallets: Wallet[] = [
     pushNotifications: true,
     solanaPayQR: 'partial',
     version: '2.15.3',
-    testDate: '2024-01-16',
+    testDate: '2025-07-17',
     description: 'Guarda is a multi-currency wallet that supports over 10,000 tokens and 50+ blockchains. This wallet offers a comprehensive solution for crypto management with built-in exchange, staking, and fiat gateway features. Guarda also provides white-label solutions for businesses and has a solid security track record.',
     website: 'https://guarda.com',
     downloadLinks: {
@@ -484,7 +484,7 @@ export const wallets: Wallet[] = [
     pushNotifications: true,
     solanaPayQR: 'partial',
     version: '8.15',
-    testDate: '2024-01-14',
+    testDate: '2025-07-17',
     description: 'Trust Wallet is one of the most popular mobile wallets in the world, developed by Binance. This wallet supports over 100 blockchains and 4.5 million assets with a focus on security and ease of use. Trust Wallet offers access to DeFi, NFT marketplaces, and Web3 apps with an intuitive interface.',
     website: 'https://trustwallet.com',
     downloadLinks: {
@@ -505,7 +505,7 @@ export const wallets: Wallet[] = [
     pushNotifications: false,
     solanaPayQR: 'yes',
     version: '2.1.0',
-    testDate: '2024-01-12',
+    testDate: '2025-07-17',
     description: 'TipLink is an innovative and revolutionary wallet with the concept of "wallet as a link". Users can send cryptocurrency to anyone just by sharing a link, even to people who don\'t have a crypto wallet yet. TipLink enables very easy onboarding to the crypto world and is perfect for use cases like tipping, gifts, and mass distribution.',
     website: 'https://tiplink.io',
     downloadLinks: {
@@ -526,7 +526,7 @@ export const wallets: Wallet[] = [
     pushNotifications: true,
     solanaPayQR: 'partial',
     version: '1.6.8',
-    testDate: '2024-01-10',
+    testDate: '2025-07-17',
     description: 'TokenPocket is a comprehensive multi-chain wallet with support for over 100 blockchains. This wallet offers a complete ecosystem with built-in DEX, DeFi tools, NFT marketplace, and gaming hub. TokenPocket also features social trading and advanced portfolio management capabilities.',
     website: 'https://tokenpocket.pro',
     downloadLinks: {
@@ -547,7 +547,7 @@ export const wallets: Wallet[] = [
     pushNotifications: true,
     solanaPayQR: 'no',
     version: '2.8.0',
-    testDate: '2024-01-08',
+    testDate: '2025-07-17',
     description: 'Binance Web3 Wallet is a gateway to the Web3 ecosystem developed by Binance, the world\'s largest crypto exchange. This wallet is integrated with the Binance ecosystem, offering access to trading, DeFi, NFT marketplaces, and various crypto services. Backed by Binance, this wallet provides high liquidity and security.',
     website: 'https://www.binance.com/web3wallet',
     downloadLinks: {
@@ -568,7 +568,7 @@ export const wallets: Wallet[] = [
     pushNotifications: true,
     solanaPayQR: 'yes',
     version: '1.4.2',
-    testDate: '2024-01-06',
+    testDate: '2025-07-17',
     description: 'Crossmint is a wallet that focuses on enterprise solutions and mass adoption with both custodial and non-custodial options. This wallet offers infrastructure for businesses looking to integrate crypto payments and NFT functionality. Crossmint also provides powerful APIs for developers.',
     website: 'https://crossmint.com',
     downloadLinks: {
@@ -589,7 +589,7 @@ export const wallets: Wallet[] = [
     pushNotifications: true,
     solanaPayQR: 'yes',
     version: '1.1.3',
-    testDate: '2024-01-04',
+    testDate: '2025-07-17',
     description: 'Decaf is a minimalist mobile wallet with a focus on privacy and security. This wallet offers a clean and simple experience without sacrificing important features. Decaf is perfect for users who want a reliable and easy-to-use wallet with a small footprint.',
     website: 'https://decaf.so',
     downloadLinks: {
@@ -609,7 +609,7 @@ export const wallets: Wallet[] = [
     pushNotifications: true,
     solanaPayQR: 'partial',
     version: '3.1.5',
-    testDate: '2024-01-02',
+    testDate: '2025-07-17',
     description: 'NOW Wallet is a wallet that focuses on ease of use and instant transactions. This wallet offers an intuitive interface with advanced features like instant swap, portfolio tracking, and market analytics. NOW Wallet is perfect for users who want a smooth trading experience.',
     website: 'https://walletnow.app',
     downloadLinks: {
@@ -630,7 +630,7 @@ export const wallets: Wallet[] = [
     pushNotifications: true,
     solanaPayQR: 'no',
     version: '2.73.1',
-    testDate: '2024-01-01',
+    testDate: '2025-07-17',
     description: 'Ledger Live is a software wallet developed by Ledger, the leading hardware wallet manufacturer. This wallet offers enterprise-level security with seamless hardware wallet integration. Ledger Live supports over 5,500 crypto assets and provides comprehensive portfolio management features.',
     website: 'https://www.ledger.com/ledger-live',
     downloadLinks: {
@@ -651,7 +651,7 @@ export const wallets: Wallet[] = [
     pushNotifications: false,
     solanaPayQR: 'partial',
     version: '1.8.0',
-    testDate: '2023-12-30',
+    testDate: '2025-07-17',
     description: 'Keystone is a hardware wallet that offers air-gapped security for crypto assets. This wallet uses QR codes for communication with software wallets, providing high security without internet connection. Keystone is perfect for users who prioritize security and cold storage.',
     website: 'https://keyst.one',
     downloadLinks: {
@@ -672,7 +672,7 @@ export const wallets: Wallet[] = [
     pushNotifications: true,
     solanaPayQR: 'yes',
     version: '1.2.8',
-    testDate: '2023-12-28',
+    testDate: '2025-07-17',
     description: 'Privy is a wallet that focuses on developer experience and easy integration. This wallet offers a powerful SDK for developers who want to integrate crypto functionality into their applications. Privy also provides seamless authentication and wallet management.',
     website: 'https://privy.io',
     downloadLinks: {
