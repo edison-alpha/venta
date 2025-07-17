@@ -9,6 +9,7 @@ import binanceLogo from '@/assets/image/binance.webp';
 import tokenpocketLogo from '@/assets/image/tokenpocket.webp';
 import trustwalletLogo from '@/assets/image/trustwalletcore.webp';
 import solanaLogo from '@/assets/image/solana-logo.png';
+import cosmicHero from '@/assets/image/Cosmic Hero.png';
 import { Wallet as WalletIcon, Search, Settings, Download, Star, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -68,7 +69,7 @@ const Index = () => {
       <div
         className="w-full"
         style={{
-          backgroundImage: "url('/src/assets/image/Cosmic Hero.png')",
+          backgroundImage: `url(${cosmicHero})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
