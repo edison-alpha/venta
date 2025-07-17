@@ -8,6 +8,7 @@ import bitgetLogo from '@/assets/image/bitget.webp';
 import binanceLogo from '@/assets/image/binance.webp';
 import tokenpocketLogo from '@/assets/image/tokenpocket.webp';
 import trustwalletLogo from '@/assets/image/trustwalletcore.webp';
+import solanaLogo from '@/assets/image/solana-logo.png';
 import { Wallet as WalletIcon, Search, Settings, Download, Star, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -243,7 +244,7 @@ const Index = () => {
               }}
             >
               <img
-          src="/src/assets/image/solana-logo.png"
+          src={solanaLogo}
           alt="Solana Logo"
           style={{
             width: '40px',
