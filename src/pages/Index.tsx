@@ -396,65 +396,65 @@ const Index = () => {
       </main>
 
       {/* Footer */}
-      <motion.footer
+            <motion.footer
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.8 }}
-        className="border-t border-border/40 bg-gradient-to-br from-background via-background to-background/90 backdrop-blur-xl mt-16 relative overflow-hidden"
+        className="border-t border-border/40 bg-gradient-to-br from-background via-background to-background/90 backdrop-blur-xl mt-10 relative overflow-hidden"
       >
-        <div className="relative z-10 container mx-auto px-4 md:px-8 lg:px-16 py-16 md:py-24">
-          <div className="flex flex-col md:flex-row items-center md:items-start justify-between relative min-h-[260px] md:min-h-[320px]">
+        <div className="relative z-10 container mx-auto px-4 md:px-8 lg:px-16 py-8 md:py-12">
+          <div className="flex flex-col md:flex-row items-center md:items-start justify-between relative min-h-[160px] md:min-h-[180px]">
         {/* Logo kiri atas */}
-        <div className="mb-4 md:mb-0 flex-shrink-0 flex items-center">
+        <div className="mb-2 md:mb-0 flex-shrink-0 flex items-center">
           <img src={logoLight} alt="Logo" className="h-8 w-auto object-contain drop-shadow-lg" />
         </div>
         {/* Copyright tengah & social */}
         <div className="flex-1 flex flex-col items-center justify-center">
-          <p className="text-base font-semibold text-foreground mb-2">© 2025 Venta</p>
-          <div className="flex flex-wrap justify-center gap-2 mb-4">
+          <p className="text-base font-semibold text-foreground mb-1">© 2025 Venta</p>
+          <div className="flex flex-wrap justify-center gap-1 mb-2">
             <Badge variant="outline">Last Updated: July 2025</Badge>
             <Badge variant="outline">Community Driven</Badge>
             <Badge variant="outline">MIT License</Badge>
           </div>
-            <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             {/* Twitter/X link */}
             <a
-              href="https://x.com/venta_xyz"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Venta Twitter"
-              className="hover:text-primary transition-colors text-white"
+          href="https://x.com/venta_xyz"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Venta Twitter"
+          className="hover:text-primary transition-colors text-white"
             >
-              <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-              <rect width="32" height="32" rx="8" fill="currentColor" className="text-background" />
-              <path
-                d="M20.7 10.5h3.1l-6.8 7.8 7.9 8.2h-6.2l-4.9-5.2-5.6 5.2H6.1l7.3-6.7-7.7-8.3h6.3l4.4 4.7 5.6-4.7zm-1.1 13.2h1.7l-10.2-11h-1.8l10.3 11z"
-                fill="#fff"
-              />
-              </svg>
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <rect width="32" height="32" rx="8" fill="currentColor" className="text-background" />
+            <path
+              d="M20.7 10.5h3.1l-6.8 7.8 7.9 8.2h-6.2l-4.9-5.2-5.6 5.2H6.1l7.3-6.7-7.7-8.3h6.3l4.4 4.7 5.6-4.7zm-1.1 13.2h1.7l-10.2-11h-1.8l10.3 11z"
+              fill="#fff"
+            />
+          </svg>
             </a>
             {/* Email with SVG */}
             <a
-              href="mailto:venta.xyz@gmail.com"
-              className="flex items-center gap-2 text-white hover:text-primary transition-colors text-base font-medium"
-              aria-label="Email Venta"
+          href="mailto:venta.xyz@gmail.com"
+          className="flex items-center gap-2 text-white hover:text-primary transition-colors text-base font-medium"
+          aria-label="Email Venta"
             >
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <rect width="24" height="24" rx="6" fill="currentColor" className="text-background" />
-              <path
-                d="M5 8.5V16a1.5 1.5 0 0 0 1.5 1.5h11A1.5 1.5 0 0 0 19 16V8.5m-14 0A1.5 1.5 0 0 1 6.5 7h11A1.5 1.5 0 0 1 19 8.5m-14 0 7 5.5 7-5.5"
-                stroke="#fff"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                fill="none"
-              />
-              </svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect width="24" height="24" rx="6" fill="currentColor" className="text-background" />
+            <path
+              d="M5 8.5V16a1.5 1.5 0 0 0 1.5 1.5h11A1.5 1.5 0 0 0 19 16V8.5m-14 0A1.5 1.5 0 0 1 6.5 7h11A1.5 1.5 0 0 1 19 8.5m-14 0 7 5.5 7-5.5"
+              stroke="#fff"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              fill="none"
+            />
+          </svg>
             </a>
-            </div>
+          </div>
         </div>
         {/* Tombol kanan atas */}
-        <div className="mb-4 md:mb-0 flex-shrink-0 flex items-center md:justify-end w-full md:w-auto mt-4 md:mt-0">
+        <div className="mb-2 md:mb-0 flex-shrink-0 flex items-center md:justify-end w-full md:w-auto mt-2 md:mt-0">
           <Button
             variant="outline"
             className="rounded-xl shadow-sm px-6 py-2 text-base font-semibold bg-background/60 hover:bg-primary/10"
