@@ -57,10 +57,10 @@ Try it online: [venta-app](https://venta-kappa.vercel.app/)
 - Widget-ready JSON structure for embedding elsewhere
 - Community-driven: contribute via pull requests
 
-## 📧 Contact & Community
+## 📧 Contact me
 
-- Twitter/X: [@venta_xyz](https://x.com/venta_xyz)
-- Email: venta.xyz@gmail.com
+- Twitter/X: [@oxmukti_w](https://x.com/0xmukti_w)
+- Superteam [earn.superteam](https://earn.superteam.fun/t/edison-alpha)
 
 ---
 
