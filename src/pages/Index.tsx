@@ -18,8 +18,8 @@ import { WalletCard } from "@/components/WalletCard";
 import { WalletModal } from "@/components/WalletModal";
 import { WalletFilters } from "@/components/WalletFilters";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import logoLight from "@/assets/logo-light.webp";
-import ventaLogo from "@/assets/logo-light.webp";
+import logoSolana from "@/assets/image/solana-logo.png";
+import cosmicHero from "@/assets/image/Cosmic Hero.png";
 import { AnimatedText } from "../components/AnimatedText";
 
 
@@ -127,7 +127,7 @@ const Index = () => {
       <div
         className="w-full"
         style={{
-          backgroundImage: "url('/src/assets/image/Cosmic Hero.png')",
+          backgroundImage: `url(${cosmicHero})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -325,7 +325,7 @@ const Index = () => {
               }}
             >
               <img
-          src="/src/assets/image/solana-logo.png"
+          src={logoSolana}
           alt="Solana Logo"
           style={{
             width: '40px',
