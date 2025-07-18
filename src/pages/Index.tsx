@@ -8,6 +8,7 @@ import bitgetLogo from '@/assets/image/bitget.webp';
 import binanceLogo from '@/assets/image/binance.webp';
 import tokenpocketLogo from '@/assets/image/tokenpocket.webp';
 import trustwalletLogo from '@/assets/image/trustwalletcore.webp';
+import solanaLogo from '@/assets/solana-logo.png';
 import { Wallet as WalletIcon, Search, Settings, Download, Star, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -127,7 +128,7 @@ const Index = () => {
       <div
         className="w-full"
         style={{
-          backgroundImage: "url('/src/assets/image/Cosmic Hero.png')",
+          backgroundImage: `url(${require('@/assets/image/Cosmic Hero.png')})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -325,14 +326,14 @@ const Index = () => {
               }}
             >
               <img
-          src="/src/assets/image/solana-logo.png"
-          alt="Solana Logo"
-          style={{
-            width: '40px',
-            height: '40px',
-            objectFit: 'contain',
-          }}
-          aria-label="Central Solana Logo"
+                src={solanaLogo}
+                alt="Solana Logo"
+                style={{
+                  width: '40px',
+                  height: '40px',
+                  objectFit: 'contain',
+                }}
+                aria-label="Central Solana Logo"
               />
             </div>
 
