@@ -8,8 +8,6 @@ import bitgetLogo from '@/assets/image/bitget.webp';
 import binanceLogo from '@/assets/image/binance.webp';
 import tokenpocketLogo from '@/assets/image/tokenpocket.webp';
 import trustwalletLogo from '@/assets/image/trustwalletcore.webp';
-import solanaLogo from '@/assets/image/solana-logo.png';
-import cosmicHero from '@/assets/image/Cosmic Hero.png';
 import { Wallet as WalletIcon, Search, Settings, Download, Star, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -31,20 +29,61 @@ const Index = () => {
   const [platformFilter, setPlatformFilter] = useState("all");
   const [custodyFilter, setCustodyFilter] = useState("all");
   const [solanaPayFilter, setSolanaPayFilter] = useState("all");
+  const [showFollowed, setShowFollowed] = useState(false);
 
   const filteredWallets = useMemo(() => {
-    return wallets.filter((wallet) => {
+    let result = wallets.filter((wallet) => {
       const matchesSearch = wallet.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           wallet.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           wallet.features.some(feature => feature.toLowerCase().includes(searchTerm.toLowerCase()));
-      
-      const matchesPlatform = platformFilter === "all" || wallet.platforms.includes(platformFilter as any);
+        wallet.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        wallet.features.some(feature => feature.toLowerCase().includes(searchTerm.toLowerCase()));
+
+      let matchesPlatform = false;
+      switch (platformFilter) {
+        case "all":
+          matchesPlatform = true;
+          break;
+        case "multi-chain":
+          matchesPlatform = wallet.features.some(f => f.toLowerCase().includes("multi-chain"));
+          break;
+        case "nft-support":
+          matchesPlatform = wallet.nftGallery === true || wallet.features.some(f => f.toLowerCase().includes("nft"));
+          break;
+        case "dapp-browser":
+          matchesPlatform = wallet.features.some(f => f.toLowerCase().includes("dapp browser"));
+          break;
+        case "solana-pay":
+          matchesPlatform = wallet.solanaPayQR === "yes" || wallet.features.some(f => f.toLowerCase().includes("solana pay"));
+          break;
+        case "custodial":
+          matchesPlatform = wallet.custodyModel === "custodial";
+          break;
+        case "self-custody":
+          matchesPlatform = wallet.custodyModel === "self-custody";
+          break;
+        case "defi-access":
+          matchesPlatform = wallet.features.some(f => f.toLowerCase().includes("defi"));
+          break;
+        case "token-swap":
+          matchesPlatform = wallet.inAppDexSwap === true || wallet.features.some(f => f.toLowerCase().includes("swap"));
+          break;
+        case "developer-apis":
+          matchesPlatform = wallet.features.some(f => f.toLowerCase().includes("developer apis"));
+          break;
+        default:
+          matchesPlatform = wallet.platforms.includes(platformFilter as any);
+      }
+
       const matchesCustody = custodyFilter === "all" || wallet.custodyModel === custodyFilter;
       const matchesSolanaPay = solanaPayFilter === "all" || wallet.solanaPayQR === solanaPayFilter;
 
       return matchesSearch && matchesPlatform && matchesCustody && matchesSolanaPay;
     });
-  }, [searchTerm, platformFilter, custodyFilter, solanaPayFilter]);
+    if (showFollowed) {
+      const myFollow = JSON.parse(localStorage.getItem("myFollow") || "[]");
+      result = result.filter(w => myFollow.includes(w.name));
+    }
+    return result;
+  }, [searchTerm, platformFilter, custodyFilter, solanaPayFilter, showFollowed]);
 
   const handleClearFilters = () => {
     setSearchTerm("");
@@ -64,12 +103,31 @@ const Index = () => {
     URL.revokeObjectURL(url);
   };
 
+  // Mobile nav state
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  // Sinkronisasi search mobile dengan searchTerm global
+  const [mobileSearch, setMobileSearch] = useState("");
+
+  // Sinkronisasi input mobile dengan searchTerm
+  const handleMobileSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setMobileSearch(e.target.value);
+    setSearchTerm(e.target.value);
+  };
+
+  // Nav items
+  const navItems = [
+    { href: "https://www.venta.xyz/", label: "Home" },
+    { href: "/", label: "Wallet" },
+    { href: "#solanapay", label: "Solana Pay" },
+    { href: "https://docs.venta.xyz", label: "Documentation", external: true }
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-background/80 font-poppins">
       <div
         className="w-full"
         style={{
-          backgroundImage: `url(${cosmicHero})`,
+          backgroundImage: "url('/src/assets/image/Cosmic Hero.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -80,116 +138,138 @@ const Index = () => {
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="sticky top-0 z-50  bg-background/40"
-          style={{
-            background: "rgba(132, 132, 132, 0)", // transparan tanpa blur
-          }}
+          className="sticky top-0 z-50 bg-background/40"
+          style={{ background: "rgba(132, 132, 132, 0)" }}
         >
           <div className="container mx-auto px-4 md:px-8 lg:px-16 flex items-center justify-between h-16">
-            <motion.div
-              className="flex items-center gap-3"
-              whileHover={{ scale: 1.02 }}
-            >
+            {/* Logo only for desktop */}
+            <motion.div className="hidden md:flex items-center gap-3" whileHover={{ scale: 1.02 }}>
               <img src={logoLight} alt="Logo" className="h-32 w-32 object-contain" />
             </motion.div>
-            {/* Navbar */}
-            <nav className="flex-1 flex items-center justify-center">
+            {/* Desktop Nav */}
+            <nav className="hidden md:flex flex-1 items-center justify-center">
               <motion.ul
-              className="flex gap-4 text-[14px] md:text-[15px] font-normal"
-              initial="hidden"
-              animate="visible"
-              variants={{
-                hidden: { opacity: 0, y: -10 },
-                visible: {
-                opacity: 1,
-                y: 0,
-                transition: { staggerChildren: 0.08 }
-                }
-              }}
-              >
-              {[
-                { href: "https://www.venta.xyz/", label: "Home" },
-                { href: "/", label: "Wallet" },
-                { href: "#solanapay", label: "Solana Pay" },
-                { href: "https://docs.venta.xyz", label: "Documentation", external: true }
-              ].map((item) => {
-                const isSelected =
-                (!item.external && window.location.pathname === item.href) ||
-                (item.href.startsWith("#") && window.location.hash === item.href);
-
-                return (
-                <motion.li
-                  key={item.label}
-                  variants={{
+                className="flex gap-4 text-[14px] md:text-[15px] font-normal"
+                initial="hidden"
+                animate="visible"
+                variants={{
                   hidden: { opacity: 0, y: -10 },
-                  visible: { opacity: 1, y: 0 }
-                  }}
-                  whileHover={{ scale: 1.12, y: -2 }}
-                  whileTap={{ scale: 0.96, y: 0 }}
-                >
-                  <a
-                  href={item.href}
-                  target={item.external ? "_blank" : undefined}
-                  rel={item.external ? "noopener noreferrer" : undefined}
-                  className={`transition-all flex items-center gap-2 ${
-                    isSelected ? "font-semibold" : ""
-                  }`}
-                  >
-                  <motion.span
-                    className={`bg-white/10 border border-white text-white px-3 py-1.5 rounded-full backdrop-blur-md text-[13px] md:text-[14px] ${
-                    isSelected
-                      ? "bg-white/30 border-primary text-primary-foreground shadow-lg"
-                      : ""
-                    }`}
-                    whileHover={{
-                    scale: 1.08,
-                    boxShadow: "0 2px 16px 0 rgba(80, 80, 255, 0.12)"
-                    }}
-                    whileTap={{
-                    scale: 0.97,
-                    boxShadow: "0 1px 8px 0 rgba(80, 80, 255, 0.08)"
-                    }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  >
-                    {item.label}
-                  </motion.span>
-                  </a>
-                </motion.li>
-                );
-              })}
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    transition: { staggerChildren: 0.08 }
+                  }
+                }}
+              >
+                {navItems.map((item) => {
+                  const isSelected =
+                    (!item.external && window.location.pathname === item.href) ||
+                    (item.href.startsWith("#") && window.location.hash === item.href);
+                  return (
+                    <motion.li
+                      key={item.label}
+                      variants={{ hidden: { opacity: 0, y: -10 }, visible: { opacity: 1, y: 0 } }}
+                      whileHover={{ scale: 1.12, y: -2 }}
+                      whileTap={{ scale: 0.96, y: 0 }}
+                    >
+                      <a
+                        href={item.href}
+                        target={item.external ? "_blank" : undefined}
+                        rel={item.external ? "noopener noreferrer" : undefined}
+                        className={`transition-all flex items-center gap-2 ${isSelected ? "font-semibold" : ""}`}
+                      >
+                        <motion.span
+                          className={`bg-white/10 border border-white text-white px-3 py-1.5 rounded-full backdrop-blur-md text-[13px] md:text-[14px] ${
+                            isSelected ? "bg-white/30 border-primary text-primary-foreground shadow-lg" : ""
+                          }`}
+                          whileHover={{ scale: 1.08, boxShadow: "0 2px 16px 0 rgba(80, 80, 255, 0.12)" }}
+                          whileTap={{ scale: 0.97, boxShadow: "0 1px 8px 0 rgba(80, 80, 255, 0.08)" }}
+                          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                        >
+                          {item.label}
+                        </motion.span>
+                      </a>
+                    </motion.li>
+                  );
+                })}
               </motion.ul>
             </nav>
+            {/* Desktop GitHub icon */}
             <motion.div
-              className="flex items-center gap-3 justify-end"
+              className="hidden md:flex items-center gap-3 justify-end"
               whileHover={{ scale: 1.08, rotate: 8 }}
               whileTap={{ scale: 0.96, rotate: -8 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
               <a
-              href="https://github.com/edison-alpha/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center"
-              title="View on GitHub"
+                href="https://github.com/venta-labs/pay-wallet-explorer"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center"
+                title="View on GitHub"
               >
-              <motion.svg
-                width="32"
-                height="32"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-label="GitHub"
-                whileTap={{ scale: 0.96, rotate: -8 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              >
-                <path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.5 2.87 8.32 6.84 9.67.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.36-3.37-1.36-.45-1.17-1.1-1.48-1.1-1.48-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.65.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.38-2.03 1-2.75-.1-.26-.44-1.3.09-2.7 0 0 .83-.27 2.73 1.02a9.18 9.18 0 0 1 2.49-.34c.85 0 1.71.12 2.5.34 1.9-1.29 2.73-1.02 2.73-1.02.53 1.4.19 2.44.09 2.7.62.72 1 1.63 1 2.75 0 3.94-2.34 4.81-4.57 5.07.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.8 0 .26.18.58.69.48A10.01 10.01 0 0 0 22 12.26C22 6.58 17.52 2 12 2z"/>
-              </motion.svg>
+                <motion.svg
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-label="GitHub"
+                  whileTap={{ scale: 0.96, rotate: -8 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.5 2.87 8.32 6.84 9.67.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.36-3.37-1.36-.45-1.17-1.1-1.48-1.1-1.48-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.65.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.38-2.03 1-2.75-.1-.26-.44-1.3.09-2.7 0 0 .83-.27 2.73 1.02a9.18 9.18 0 0 1 2.49-.34c.85 0 1.71.12 2.5.34 1.9-1.29 2.73-1.02 2.73-1.02.53 1.4.19 2.44.09 2.7.62.72 1 1.63 1 2.75 0 3.94-2.34 4.81-4.57 5.07.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.8 0 .26.18.58.69.48A10.01 10.01 0 0 0 22 12.26C22 6.58 17.52 2 12 2z" />
+                </motion.svg>
               </a>
             </motion.div>
+            {/* Mobile Nav: Logo, Search, Hamburger Dropdown */}
+            <div className="flex md:hidden items-center gap-2 w-full">
+              {/* Logo (mobile) */}
+              <img src={logoLight} alt="Logo" className="h-10 w-10 object-contain" />
+              {/* Mobile Search */}
+              <input
+                type="text"
+                value={mobileSearch}
+                onChange={handleMobileSearchChange}
+                placeholder="Search wallets..."
+                className="ml-2 px-3 py-1 rounded-md bg-background/60 text-foreground text-sm border border-border focus:outline-none focus:ring focus:ring-primary flex-1"
+                style={{ minWidth: 120 }}
+              />
+              {/* Hamburger */}
+              <button
+                className="p-2 rounded-md bg-background/60 hover:bg-background/80 focus:outline-none"
+                onClick={() => setMobileNavOpen((v) => !v)}
+                aria-label="Open navigation menu"
+              >
+                <svg width="28" height="28" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
+            </div>
           </div>
+          {/* Mobile Dropdown Nav */}
+          {mobileNavOpen && (
+            <div className="md:hidden absolute top-16 left-0 w-full bg-background/90 backdrop-blur-lg shadow-lg z-50">
+              <ul className="flex flex-col gap-2 py-4 px-6">
+                {navItems.map((item) => (
+                  <li key={item.label}>
+                    <a
+                      href={item.href}
+                      target={item.external ? "_blank" : undefined}
+                      rel={item.external ? "noopener noreferrer" : undefined}
+                      className="block w-full px-4 py-2 rounded-md text-foreground hover:bg-primary/10 transition-all"
+                      onClick={() => setMobileNavOpen(false)}
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </motion.header>
         {/* Tambahkan container agar padding kiri-kanan sejajar dengan wallet filter */}
         <div className="container mx-auto px-4 md:px-8 lg:px-16">
@@ -245,7 +325,7 @@ const Index = () => {
               }}
             >
               <img
-          src={solanaLogo}
+          src="/src/assets/image/solana-logo.png"
           alt="Solana Logo"
           style={{
             width: '40px',
@@ -339,6 +419,8 @@ const Index = () => {
           onClearFilters={handleClearFilters}
           filteredCount={filteredWallets.length}
           totalCount={wallets.length}
+          showFollowed={showFollowed}
+          setShowFollowed={setShowFollowed}
         />
 
         {/* Solana Wallet text & Export Data Button */}
@@ -396,7 +478,7 @@ const Index = () => {
       </main>
 
       {/* Footer */}
-            <motion.footer
+      <motion.footer
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.8 }}

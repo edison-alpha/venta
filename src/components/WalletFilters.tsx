@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Input } from "@/components/ui/input";
+import { useState, useEffect } from "react";
 import { Search, Filter, X } from "lucide-react";
 import { Wallet } from "@/data/wallets";
 
@@ -15,6 +16,8 @@ interface WalletFiltersProps {
   onClearFilters: () => void;
   filteredCount: number;
   totalCount: number;
+  showFollowed: boolean;
+  setShowFollowed: (value: boolean) => void;
 }
 
 export function WalletFilters({
@@ -29,8 +32,15 @@ export function WalletFilters({
   onClearFilters,
   filteredCount,
   totalCount,
+  showFollowed,
+  setShowFollowed,
 }: WalletFiltersProps) {
   const hasActiveFilters = searchTerm || platformFilter !== "all" || custodyFilter !== "all" || solanaPayFilter !== "all";
+  const [followedCount, setFollowedCount] = useState(0);
+  useEffect(() => {
+    const myFollow = JSON.parse(localStorage.getItem("myFollow") || "[]");
+    setFollowedCount(myFollow.length);
+  }, [showFollowed, filteredCount, totalCount, searchTerm, platformFilter, custodyFilter, solanaPayFilter]);
 
   // Platform filter options based on wallet data
   const platformFilters = [
@@ -39,7 +49,16 @@ export function WalletFilters({
     { label: "Mobile", value: "mobile" },
     { label: "Desktop", value: "desktop" },
     { label: "Browser Extension", value: "browser-extension" },
-    { label: "Hardware", value: "hardware" }
+    { label: "Hardware", value: "hardware" },
+    { label: "Multi-Chain Support", value: "multi-chain" },
+    { label: "NFT Support", value: "nft-support" },
+    { label: "Dapp Browser", value: "dapp-browser" },
+    { label: "Solana Pay", value: "solana-pay" },
+    { label: "Custodial", value: "custodial" },
+    { label: "Non Custodial/Self Custodial", value: "self-custody" },
+    { label: "DeFi Access", value: "defi-access" },
+    { label: "Instan Token Swap", value: "token-swap" },
+    { label: "Developer APIs", value: "developer-apis" }
   ];
 
   return (
@@ -51,12 +70,32 @@ export function WalletFilters({
     >
       {/* Tab Header */}
       <div className="flex items-center gap-8 border-b border-white/20 mb-2 relative">
-        <button className="text-white font-medium text-lg relative" style={{letterSpacing:0.5}}>
+        <button
+          className={`text-white font-medium text-lg relative ${!showFollowed ? '' : 'opacity-60'}`}
+          style={{letterSpacing:0.5}}
+          onClick={() => setShowFollowed(false)}
+        >
           Wallets <span className="ml-1 px-2 py-0.5 rounded bg-primary/20 text-white text-sm">{totalCount}</span>
-          <span className="absolute left-0 -bottom-2 w-full h-0.5 bg-primary rounded" />
+          {!showFollowed && (
+            <motion.span
+              layoutId="tab-underline"
+              className="absolute left-0 -bottom-2 w-full h-0.5 bg-primary rounded"
+              transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+            />
+          )}
         </button>
-        <button className="text-white font-medium text-lg relative">
-          My Follow <span className="ml-1 px-2 py-0.5 rounded bg-muted text-white text-sm">4</span>
+        <button
+          className={`text-white font-medium text-lg relative ${showFollowed ? '' : 'opacity-60'}`}
+          onClick={() => setShowFollowed(true)}
+        >
+          My Follow <span className="ml-1 px-2 py-0.5 rounded bg-muted text-white text-sm">{followedCount}</span>
+          {showFollowed && (
+            <motion.span
+              layoutId="tab-underline"
+              className="absolute left-0 -bottom-2 w-full h-0.5 bg-primary rounded"
+              transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+            />
+          )}
         </button>
         <div className="relative flex-1 max-w-md ml-auto mb-2">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
@@ -71,22 +110,24 @@ export function WalletFilters({
       </div>
 
       {/* Horizontal Feature Filters */}
-      <div className="flex flex-wrap gap-3 mb-4">
-        {platformFilters.map(({ label, value }) => (
-          <button
-            key={value}
-            onClick={() => onPlatformFilterChange(value)}
-            className={`px-5 py-2 rounded-full font-medium text-sm transition-all border
-              ${platformFilter === value
-                ? 'bg-white/30 border-white text-white'
-                : 'bg-transparent border-white/30 text-white'}
-              hover:bg-white/30 hover:border-white hover:text-white`}
-            style={{ minWidth: '80px' }}
-          >
-            {label}
-          </button>
-        ))}
-      </div>
+      {!showFollowed && (
+        <div className="flex flex-wrap gap-3 mb-4">
+          {platformFilters.map(({ label, value }) => (
+            <button
+              key={value}
+              onClick={() => onPlatformFilterChange(value)}
+              className={`px-5 py-2 rounded-full font-medium text-sm transition-all border
+                ${platformFilter === value
+                  ? 'bg-white/30 border-white text-white'
+                  : 'bg-transparent border-white/30 text-white'}
+                hover:bg-white/30 hover:border-white hover:text-white`}
+              style={{ minWidth: '80px' }}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+      )}
     </motion.div>
   );
 }
